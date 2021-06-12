@@ -1,5 +1,5 @@
 @def title = "VasBlog"
-@def tags = ["syntax", "code"]
+<!-- @def tags = ["syntax", "code"] -->
 
 # How to use Franklin
 

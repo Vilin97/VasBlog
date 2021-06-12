@@ -1,12 +1,12 @@
-@def title = "Menu 3"
+@def title = "Test"
 
-# Working with tags
+# Test page
 
 **Example**:
 
-* page with tag [`syntax`](/tag/syntax/)
+<!-- * page with tag [`syntax`](/tag/syntax/)
 * page with tag [`image`](/tag/image/)
-* page with tag [`code`](/tag/code/)
+* page with tag [`code`](/tag/code/) -->
 
 \toc
 

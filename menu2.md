@@ -1,14 +1,18 @@
-@def title = "More goodies"
+@def title = "Blog"
 @def hascode = true
-@def rss = "A short description of the page which would serve as **blurb** in a `RSS` feed; you can use basic markdown here but the whole description string must be a single line (not a multiline string). Like this one for instance. Keep in mind that styling is minimal in RSS so for instance don't expect maths or fancy styling to work; images should be ok though: ![](https://upload.wikimedia.org/wikipedia/en/b/b0/Rick_and_Morty_characters.jpg)"
-@def rss_title = "More goodies"
-@def rss_pubdate = Date(2019, 5, 1)
+@def rss = "Blog of Vasily Ilin"
+@def rss_title = "VasBlog"
+@def rss_pubdate = Date(2021, 6, 11)
 
-@def tags = ["syntax", "code", "image"]
+<!-- @def tags = ["syntax", "code", "image"] -->
 
-# More goodies
+# Blog
 
 \toc
+
+## First post: what I'm doing in summer 2021
+<!-- add links to project, people, etc -->
+I am happy to have been accepted to Google Summer of Code 2021 with the project "Efficient Spatial Simulations in DiffEqJump." I will be writing code under the mentorship of Samuel Isaacson and Chris (last name?) 
 
 ## More markdown support
 

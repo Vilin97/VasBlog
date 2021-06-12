@@ -1,14 +1,27 @@
 +++
-title = "Code blocks"
+title = "About Me"
 hascode = true
-date = Date(2019, 3, 22)
-rss = "A short description of the page which would serve as **blurb** in a `RSS` feed; you can use basic markdown here but the whole description string must be a single line (not a multiline string). Like this one for instance. Keep in mind that styling is minimal in RSS so for instance don't expect maths or fancy styling to work; images should be ok though: ![](https://upload.wikimedia.org/wikipedia/en/3/32/Rick_and_Morty_opening_credits.jpeg)"
+date = Date(2021, 6, 11)
+rss = "About Vasily Ilin"
 +++
-@def tags = ["syntax", "code"]
+<!-- @def tags = ["syntax", "code"] -->
 
-# Working with code blocks
+# About me
 
 \toc
+
+## Background
+I grew up in Moscow, Russia. At 17 I moved to Boston to attend Boston University. My first academic interest was economics but I switched to math mid-way. In 2017 I spent a semester in Auckland, New Zealand, where I took my first proof based-math class. In 2020 I graduated from BU but stayed another year for a Masters degree in computer science, graduating in 2021. I've been doing a PhD in pure mathematics at the University of Washington since then.
+
+## Professional interests
+<!-- TODO: add links to projects -->
+On the math side of things I enjoy anything interdisciplinary. For example, using algebra to study topological spaces (shoutout to $\pi_1$ and $H_{\text{dR}}$) or using smooth manifold theory in complex analysis. I do not have a concrete research interest yet; working on it!
+
+On the computer science side of things, my favorite topic is computational complexity from both the theoretical and practical points of view. I like the process of designing fast algorithms and implementing them efficiently.
+
+## Personal
+<!-- TODO: add refs, photos -->
+In my free time I do rock climbing (mostly indoor bouldering) and calisthenics (hand stands, etc). I also like reading popular science books: some my favorites are "How to Hide an Empire" by (**author?**) and "The Sixth Extinction" by (**author?**). I use GoodReads (**link?**) to keep track of books I want to read and to review some.
 
 ## Live evaluation of code blocks
 
