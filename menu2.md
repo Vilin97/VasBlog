@@ -12,7 +12,7 @@
 
 ## First post: what I'm doing in summer 2021
 <!-- add links to project, people, etc -->
-I am happy to have been accepted to Google Summer of Code 2021 with the project "Efficient Spatial Simulations in DiffEqJump." I will be writing code under the mentorship of Samuel Isaacson and Chris (last name?) 
+I am happy to have been accepted to Google Summer of Code 2021 with the [project](https://summerofcode.withgoogle.com/projects/#5463862406545408) "Efficient Spatial Simulations in DiffEqJump." I will be writing code under the mentorship of [Samuel Isaacson](http://math.bu.edu/people/isaacson/) and [Chris Rackauckas](https://chrisrackauckas.com/). The goal of the project is to expand [DiffEqJump](https://github.com/SciML/DiffEqJump.jl) with new, optimized spatial solvers and a consistent interface, enabling the study of large spatial systems of jump processes.
 
 ## More markdown support
 
