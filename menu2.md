@@ -4,7 +4,6 @@
 @def rss_title = "VasBlog"
 @def rss_pubdate = Date(2021, 6, 11)
 
-<!-- @def tags = ["syntax", "code", "image"] -->
 
 # Blog
 
@@ -15,7 +14,12 @@
 I am happy to have been accepted to Google Summer of Code 2021 with the [project](https://summerofcode.withgoogle.com/projects/#5463862406545408) "Efficient Spatial Simulations in DiffEqJump." I will be writing code under the mentorship of [Samuel Isaacson](http://math.bu.edu/people/isaacson/) and [Chris Rackauckas](https://chrisrackauckas.com/). The goal of the project is to expand [DiffEqJump](https://github.com/SciML/DiffEqJump.jl) with new, optimized spatial solvers and a consistent interface, enabling the study of large spatial systems of jump processes.
 
 ### Synopsis
-Jump processes are a fundamental component in stochastic models throughout engineering, medicine and the sciences. For example, biology is rich with chemical networks consisting of hundreds or thousands of chemical reactions such as the B-cell network \citep{barua2012computational}. Often they are modelled as systems of differential equations, which has multiple drawbacks: in general the solutions to the DE's do not coincide with the mean of the stochastic solutions; variance and other moments cannot be gathered from solutions to DE's; when the number of species (e.g. molecules or individuals) is low, treating it as a continuous random variable introduces inaccuracies. Stochastic Simulation Algorithms (SSAs) are used to stochastically simulate the system. While there are approximate SSAs, the focus of this project is on exact SSAs -- those that keep all statistics exact modulo the sampling error.
+Jump processes are a fundamental component in stochastic models throughout engineering, medicine and the sciences. For example, biology is rich with chemical networks consisting of hundreds or thousands of chemical reactions such as the B-cell network \citep{barua2012computational}. Often they are modelled as systems of differential equations, which has multiple drawbacks:
+* in general the solutions to the DE's do not coincide with the mean of the stochastic solutions;
+* variance and other moments cannot be gathered from solutions to DE's;
+* when the number of species (e.g. molecules or individuals) is low, treating it as a continuous random variable introduces inaccuracies.
+
+Stochastic Simulation Algorithms (SSAs) are used to stochastically simulate the system. While there are approximate SSAs, the focus of this project is on exact SSAs -- those that keep all statistics exact modulo the sampling error.
 
 DiffEqJump is a part of the SciML ecosystem, which contains infrastructure to perform such simulations. DiffEqJump is a package in [Julia](https://julialang.org/), and is a part of the [SciML](https://sciml.ai/) ecosystem. It contains infrastructure to perform such simulations.
 
@@ -24,147 +28,22 @@ enabling the study of large spatial systems of jump processes and the use of jum
 
 ### My motivation
 \newcommand{\arrow}{\xrightarrow}
-\newcommand{\dnanetwork}{\begin{align}
-  DNA &\arrow{k_1} mRNA + DNA\\
-  mRNA &\arrow{k_2} mRNA + P\\
-  mRNA &\arrow{k_3} 0\\
-  P &\arrow{k_4} 0\\
-  DNA + P &\arrow{k_5} DNAR\\
-  DNAR &\arrow{k_6} DNA + P
-\end{align}}
+
 @@row
 @@container
-@@left \dnanetwork @@
+@@right
+The SIR model
+\begin{align} \label{eqn: SIR model}
+  S + I &\arrow{\alpha} 2I\\  
+  I &\arrow{\beta} R
+\end{align}
 @@
-Marine iguanas are **truly splendid** creatures. They're not found in equations like $\exp(-i\pi)+1$. But they're still quite cool.
-~~~
-<div style="clear: both"></div>
-~~~
 @@
-My main motivation for working on DiffEqJump is to take part in the effort of building better models to describe the world around us. DiffEqJump is used by scientists in the fields of biology, medicine, applied mathematics to stochastically simulate chemical and other jump process-based network models. One application of a non-chemical network, whose evolution can be stochastically simulated, is epidemic dynamics, the simplest of which is the SIR model (SIR stands for Susceptible, Infected and Recovered/Removed). Since the assumption of people being well-mixed is violated in this scenario, the model would be more realistic if people were allowed to "diffuse" between different locales, and "react" when they are within the same locale. As the year of 2020 showed, epidemic dynamics is one of the most important applications to which mathematical models can provide critical insights.
+@@
+
+My main motivation for working on DiffEqJump is to take part in the effort of building better models to describe the world around us. DiffEqJump is used by scientists in the fields of biology, medicine, applied mathematics to stochastically simulate chemical and other jump process-based network models. One application of a non-chemical network, whose evolution can be stochastically simulated, is epidemic dynamics, the simplest of which is the SIR model \eqref{eqn: SIR model} (SIR stands for Susceptible, Infected and Recovered/Removed). Since the assumption of people being well-mixed is violated in this scenario, the model would be more realistic if people were allowed to "diffuse" between different locales, and "react" when they are within the same locale. As the year of 2020 showed, epidemic dynamics is one of the most important applications to which mathematical models can provide critical insights.
 
 Another big motivation for working on DiffEqJump comes from knowing that it is freely available for any modeler, for example, being actively used by researchers in Quantitative Systems Pharmacology working on drug development. This open source project helps biologists, chemists, epidemiologists and other scientists simulate stochastic networks efficiently and accurately.
-
-### What is DiffEqJump?
-DiffEqJump is a package in [Julia](https://julialang.org/), and is a part of the [SciML](https://sciml.ai/) ecosystem. It allows users to build and solve systems of jump equations. An easy-to-appreciate use case is modeling chemical systems such as
-
-### How I got involved
-
-## More markdown support
-
-The Julia Markdown parser in Julia's stdlib is not exactly complete and Franklin strives to bring useful extensions that are either defined in standard specs such as Common Mark or that just seem like useful extensions.
-
-* indirect references for instance [like so]
-
-[like so]: http://existentialcomics.com/
-
-or also for images
-
-![][some image]
-
-some people find that useful as it allows referring multiple times to the same link for instance.
-
-[some image]: https://upload.wikimedia.org/wikipedia/commons/9/90/Krul.svg
-
-* un-qualified code blocks are allowed and are julia by default, indented code blocks are not supported by default (and there support will disappear completely in later version)
-
-```
-a = 1
-b = a+1
-```
-
-you can specify the default language with `@def lang = "julia"`.
-If you actually want a "plain" code block, qualify it as `plaintext` like
-
-```plaintext
-so this is plain-text stuff.
-```
-
-## A bit more highlighting
-
-Extension of highlighting for `pkg` an `shell` mode in Julia:
-
-```julia-repl
-(v1.4) pkg> add Franklin
-shell> blah
-julia> 1+1
-(Sandbox) pkg> resolve
-```
-
-you can tune the colouring in the CSS etc via the following classes:
-
-* `.hljs-meta` (for `julia>`)
-* `.hljs-metas` (for `shell>`)
-* `.hljs-metap` (for `...pkg>`)
-
-## More customisation
-
-Franklin, by design, gives you a lot of flexibility to define how you want stuff be done, this includes doing your own parsing/processing and your own HTML generation using Julia code.
-
-In order to do this, you can define two types of functions in a `utils.jl` file which will complement your `config.md` file:
-
-* `hfun_*` allow you to plug custom-generated HTML somewhere
-* `lx_*` allow you to do custom parsing of markdown and generation of HTML
-
-The former (`hfun_*`) is most likely to be useful.
-
-### Custom "hfun"
-
-If you define a function `hfun_bar` in the `utils.jl` then you have access to a new template function `{{bar ...}}`. The parameters are passed as a list of strings, for instance variable names but it  could just be strings as well.
-
-For instance:
-
-```julia
-function hfun_bar(vname)
-  val = Meta.parse(vname[1])
-  return round(sqrt(val), digits=2)
-end
-```
-
-~~~
-.hf {background-color:black;color:white;font-weight:bold;}
-~~~
-
-Can be called with `{{bar 4}}`: **{{bar 4}}**.
-
-Usually you will want to pass variable name (either local or global) and collect their value via one of `locvar`, `globvar` or `pagevar` depending on your use case.
-Let's have another toy example:
-
-```julia
-function hfun_m1fill(vname)
-  var = vname[1]
-  return pagevar("menu1", var)
-end
-```
-
-Which you can use like this `{{m1fill title}}`: **{{m1fill title}}**. Of course  in this specific case you could also have used `{{fill title menu1}}`: **{{fill title menu1}}**.
-
-Of course these examples are not very useful, in practice you might want to use it to generate actual HTML in a specific way using Julia code.
-For instance you can use it to customise how [tag pages look like](/menu3/#customising_tag_pages).
-
-A nice example of what you can do is in the [SymbolicUtils.jl manual](https://juliasymbolics.github.io/SymbolicUtils.jl/api/) where they use a `hfun_` to generate HTML encapsulating the content of code docstrings, in a way doing something similar to what Documenter does. See [how they defined it](https://github.com/JuliaSymbolics/SymbolicUtils.jl/blob/website/utils.jl).
-
-**Note**: the  output **will not** be reprocessed by Franklin, if you want to generate markdown which should be processed by Franklin, then use `return fd2html(markdown, internal=true)` at the end.
-
-### Custom "lx"
-
-These commands will look the same as latex commands but what they do with their content is now entirely controlled by your code.
-You can use this to do your own parsing of specific chunks of your content if you so desire.
-
-The definition of `lx_*` commands **must** look like this:
-
-```julia
-function lx_baz(com, _)
-  # keep this first line
-  brace_content = Franklin.content(com.braces[1]) # input string
-  # do whatever you want here
-  return uppercase(brace_content)
-end
-```
-
-You can call the above with `\baz{some string}`: \baz{some string}.
-
-**Note**: the output **will be** reprocessed by Franklin, if you want to avoid this, then escape the output by using `return "~~~" * s * "~~~"` and it will be plugged  in as is in the HTML.
 
 
 * \biblabel{barua2012computational}{Barua et al. (2012)} Dipak Barua, William S Hlavacek, and Tomasz Lipniacki. “A computational model for early events in B cell antigen receptor signaling: analysis of the roles of Lyn and Fyn”. In: _The Journal of Immunology_ 189.2 (2012),pp. 646–658.
