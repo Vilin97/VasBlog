@@ -28,23 +28,22 @@ enabling the study of large spatial systems of jump processes and the use of jum
 
 ### My motivation
 \newcommand{\arrow}{\xrightarrow}
+My main motivation for working on DiffEqJump is to take part in the effort of building better models to describe the world around us. DiffEqJump is used by scientists in the fields of biology, medicine, applied mathematics to stochastically simulate chemical and other jump process-based network models. One application of a non-chemical network, whose evolution can be stochastically simulated, is epidemic dynamics, the simplest of which is the SIR model \eqref{eqn: SIR model} (SIR stands for Susceptible, Infected and Recovered/Removed). Since the assumption of people being well-mixed is violated in this scenario, the model would be more realistic if people were allowed to "diffuse" between different locales, and "react" when they are within the same locale. As the year of 2020 showed, epidemic dynamics is one of the most important applications to which mathematical models can provide critical insights.
 
-@@row
-@@container
-@@right
-The SIR model
-\begin{align} \label{eqn: SIR model}
+$$
+\begin{aligned} \label{eqn: SIR model}
   S + I &\arrow{\alpha} 2I\\  
   I &\arrow{\beta} R
-\end{align}
-@@
-@@
-@@
-
-My main motivation for working on DiffEqJump is to take part in the effort of building better models to describe the world around us. DiffEqJump is used by scientists in the fields of biology, medicine, applied mathematics to stochastically simulate chemical and other jump process-based network models. One application of a non-chemical network, whose evolution can be stochastically simulated, is epidemic dynamics, the simplest of which is the SIR model \eqref{eqn: SIR model} (SIR stands for Susceptible, Infected and Recovered/Removed). Since the assumption of people being well-mixed is violated in this scenario, the model would be more realistic if people were allowed to "diffuse" between different locales, and "react" when they are within the same locale. As the year of 2020 showed, epidemic dynamics is one of the most important applications to which mathematical models can provide critical insights.
+\end{aligned}
+$$
 
 Another big motivation for working on DiffEqJump comes from knowing that it is freely available for any modeler, for example, being actively used by researchers in Quantitative Systems Pharmacology working on drug development. This open source project helps biologists, chemists, epidemiologists and other scientists simulate stochastic networks efficiently and accurately.
 
+### Further steps
+In the coming weeks I will be designing an interface for spatial simulations in DiffEqJump. Follow [my Github](https://github.com/Vilin97) and [DiffEqJump](https://github.com/SciML/DiffEqJump.jl) to see the progress this summer.
+
+
+## References
 
 * \biblabel{barua2012computational}{Barua et al. (2012)} Dipak Barua, William S Hlavacek, and Tomasz Lipniacki. “A computational model for early events in B cell antigen receptor signaling: analysis of the roles of Lyn and Fyn”. In: _The Journal of Immunology_ 189.2 (2012),pp. 646–658.
 * \biblabel{elf2004spontaneous}{Elf & Ehrenberg (2004)} Johan Elf and M ̊ans Ehrenberg. “Spontaneous separation of bi-stable biochemical systems into spatial domains of opposite phases”. In: _Systems biology_ 1.2 (2004), pp. 230–236.
