@@ -172,9 +172,9 @@ Marine iguanas are **truly splendid** creatures. They're not found in equations 
 
 Here are a few empty pages connecting to the menu links to show where files can go and the resulting paths. (It's probably best if you look at the source folder for this).
 
-* [menu 1](/menu1/)
+<!-- * [menu 1](/menu1/)
 * [menu 2](/menu2/)
-* [menu 3](/menu3/)
+* [menu 3](/menu3/) -->
 
 ## References (not really)
 
@@ -364,14 +364,14 @@ Can be called with `{{bar 4}}`: **{{bar 4}}**.
 Usually you will want to pass variable name (either local or global) and collect their value via one of `locvar`, `globvar` or `pagevar` depending on your use case.
 Let's have another toy example:
 
-```julia
+<!-- ```julia
 function hfun_m1fill(vname)
   var = vname[1]
   return pagevar("menu1", var)
 end
-```
+``` -->
 
-Which you can use like this `{{m1fill title}}`: **{{m1fill title}}**. Of course  in this specific case you could also have used `{{fill title menu1}}`: **{{fill title menu1}}**.
+<!-- Which you can use like this `{{m1fill title}}`: **{{m1fill title}}**. Of course  in this specific case you could also have used `{{fill title menu1}}`: **{{fill title menu1}}**. -->
 
 Of course these examples are not very useful, in practice you might want to use it to generate actual HTML in a specific way using Julia code.
 For instance you can use it to customise how [tag pages look like](/menu3/#customising_tag_pages).
