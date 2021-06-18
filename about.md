@@ -17,8 +17,7 @@ rss = "About Vasily Ilin"
       margin: 0.5em;
       padding: 0.5em;
    }
- </style>
-}
+</style>
 ~~~
 # About me
 
