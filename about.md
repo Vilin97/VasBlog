@@ -8,12 +8,17 @@ rss = "About Vasily Ilin"
 ~~~
 <style>
    figure {
-     width: 500px;
-     margin: 0 0 15px 20px;
-     /* float: right; */
-     text-align: center;
+      width: 500px;
+      margin: 0 0 15px 20px;
+      /* float: right; */
+      text-align: center;
+      font-size: smaller;
+      border: thin silver solid;
+      margin: 0.5em;
+      padding: 0.5em;
    }
  </style>
+}
 ~~~
 # About me
 
@@ -25,7 +30,7 @@ I grew up in Moscow, Russia. At 17 I moved to Boston to attend Boston University
 ## Professional interests
 ~~~
 <figure>
-  <img src="/assets/fundamental_group.png" width="70%" />
+  <img src="/assets/fundamental_group.png" width="100%" />
   <figcaption> The free group on 3 generators embeds in the free group on 2 generators via the map induced by the covering. </figcaption>
 </figure>
 ~~~
