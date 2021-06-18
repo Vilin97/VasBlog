@@ -23,10 +23,29 @@
 
 <item>
   <title>
+    <![CDATA[  VasBlog  ]]>
+  </title>
+  <link> https://vilin97.github.io/index.html </link>
+  <guid> https://vilin97.github.io/index.html </guid>
+  <description>
+    <![CDATA[  Vasily Ilin – math PhD student.  ]]>
+  </description>  
+    
+  <pubDate>Fri, 18 Jun 2021 00:00:00 +0000</pubDate>  
+  
+  
+  <atom:author>
+    <atom:name>Vasily Ilin</atom:name>
+  </atom:author>
+        
+</item>
+
+<item>
+  <title>
     <![CDATA[  About Me  ]]>
   </title>
-  <link> https://vilin97.github.io/menu1/index.html </link>
-  <guid> https://vilin97.github.io/menu1/index.html </guid>
+  <link> https://vilin97.github.io/about/index.html </link>
+  <guid> https://vilin97.github.io/about/index.html </guid>
   <description>
     <![CDATA[  About Vasily Ilin  ]]>
   </description>  
