@@ -9,7 +9,7 @@ The past two weeks saw me work on my [first PR](https://github.com/SciML/DiffEqJ
 ## Next Subvolume Method
 When simulating spatially non-homogeneous systems the standard approach is to split the domain into small sub-domains (often called sites). Each sub-domain is assumed to be well-mixed. Now there are two types of events that can happen at each step of the simulation: reactions within a site and diffusions between neighboring sites.
 
-![alt text](_assets/dna_diffusion_movie_10fps.gif)
+![alt text](/assets/dna_diffusion_movie_10fps.gif)
 
 The Next Subvolume Method is described in detailed pseudocode in \citep{elf2004spontaneous}.
 
