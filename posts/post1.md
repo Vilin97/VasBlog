@@ -1,9 +1,7 @@
-@def title = "First post: what I'm doing in summer 2021"
-@def hascode = true
-<!-- @def rss = "Blog of Vasily Ilin" -->
-@def rss_title = "VasBlog"
-@def rss_pubdate = Date(2021, 6, 11)
-
++++
+title = "First post: what I'm doing in summer 2021"
+published = "2021-06-11"
++++
 
 # First post: what I'm doing in summer 2021
 <!-- add links to project, people, etc -->
