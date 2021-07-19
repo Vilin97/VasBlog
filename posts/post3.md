@@ -75,11 +75,11 @@ In order to find out which method (pre-computing neighbors, rejection-sampling o
 ~~~
 <figure>
   <img src="/assets/diffusion_bench.png" width="100%" />
-  <figcaption> Simulation of the DNA repressor model. </figcaption>
+  <figcaption> Benchmarking pure diffusion on a 64x64x64 grid. </figcaption>
 </figure>
 ~~~
 
 ## Further work
 The next step is to add support of various forms of hopping rates. Currently, the assumption is that hopping rates are of form $D_{s,i}$, where $s$ is a species and $i$ is a site (i.e. hopping rates depend only on the species and site). Other common forms of hopping rates include $L_{s,i,j}$, $D_s \cdot L_{i,j}$, and $D_{s,i}\cdot L_{i,j}$. Each of these is a special case of $L_{s,i,j}$, so implementing this is the priority, but each special case allows for more efficient memory usage and thus better performance.
 
-At the moment there are two data main structures used in spatial simulation: `AbstractSpatialSystem` and `AbstractSpatialRates`. The role of the first is to contain all information about the topology (number of sites, number of neighbors for each site, sampling a random neighbor). The role of the second is to contain all information about the current rates of reactions and jumps. In order to improve orthogonality `AbstractSpatialRates` can be split into `AbstractRxRates` and `AbstractHoppingRates`. Depending on the form that hopping or reaction rates take, the user will pass in different objects, making it easy to "assemble" the spatial simulation.
+At the moment there are two data main structures used in spatial simulation: `AbstractSpatialSystem` and `AbstractSpatialRates`. The role of the first is to contain all information about the topology (number of sites, number of neighbors for each site, sampling a random neighbor). The role of the second is to contain all information about the current rates of reactions and jumps. In order to improve [orthogonality](https://en.wikipedia.org/wiki/Orthogonality_(programming)) `AbstractSpatialRates` can be split into `AbstractRxRates` and `AbstractHoppingRates`. Depending on the form that hopping or reaction rates take, the user will pass in different objects, making it easy to "assemble" the spatial simulation.
