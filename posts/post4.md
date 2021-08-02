@@ -11,11 +11,11 @@ A 5 by 5 Cartesian grid:
 
 | <!-- -->  | <!-- -->  | <!-- -->  |  <!-- --> | <!-- -->  |
 |---|---|---|---|---|
-| A,B | . | . | . | . |
+| . | . | . | . | B |
 | . | . | . | . | . |
 | . | . | . | . | . |
 | . | . | . | . | . |
-| . | . | . | . | C |
+| A | . | . | . | . |
 
 Suppose we have a reversible binding system described by $A+B \xleftrightarrow[k_2]{k_1} C$, where $k_1$ is the forward rate and $k_2$ is the backward rate. Further suppose that all $A$ molecules start in the lower left corner, while all $B$ molecules start in the upper right corner of a 5 by 5 grid. There are no $C$ molecules at the start.
 
