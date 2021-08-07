@@ -6,7 +6,7 @@ published = "2021-08-02"
 # Tutorial on using spatial SSAs in DiffEqJump
 This blog will show how to use the functionality I added to `DiffEqJump` over the summer. See [the documentation](https://diffeq.sciml.ai/latest/types/jump_types/) for a tutorial on getting started with `DiffEqJump`.
 
-## Reversible binding model
+## Reversible binding model on a grid
 A 5 by 5 Cartesian grid:
 
 | <!-- -->  | <!-- -->  | <!-- -->  |  <!-- --> | <!-- -->  |
@@ -23,15 +23,17 @@ We first create the grid:
 ```julia
 using DiffEqJump
 dims = (5,5)
-grid = DiffEqJump.CartesianGridRej(dims) # or use LightGraphs.grid(dims)
+num_nodes = prod(dims) # number of sites
+grid = CartesianGrid(dims) # or use LightGraphs.grid(dims)
 ```
 Now we set the initial state of the simulation. It has to be a matrix with entry $(s,i)$ being the number of species $s$ at site $i$ (with the standard column-major ordering of the grid).
 ```julia
-starting_state = zeros(Int, 3, 25)
+num_species = 3
+starting_state = zeros(Int, num_species, num_nodes)
 starting_state[1,1] = 25
 starting_state[1,2] = 25
 ```
-We now set the time-span of the simulation and the reaction rates
+We now set the time-span of the simulation and the reaction rates. These can be chosen arbitrarily.
 ```julia
 tspan = (0.0, 2.0)
 rates = [3.0, 0.05] # k_1 = rates[1], k_2 = rates[2]
@@ -48,8 +50,8 @@ majumps = MassActionJump(rates, reactstoch, netstoch)
 ```
 The last thing to set up is the hopping constants -- the probability per time of an andividual molecule of each species hopping from one site to another site. In practice this parameter, as well as reaction rates, are obtained empirically. Suppose that molecule $C$ cannot diffuse, while molecules $A$ and $B$ diffuse at probability per time 1 (i.e. the time of the diffusive hop is exponentially distributed with mean 1).
 ```julia 
-hopping_constants = ones(3, 25)
-hopping_constants[3, :] = zeros(25)
+hopping_constants = ones(num_species, num_nodes)
+hopping_constants[3, :] .= 0.0
 ```
 We are now ready to set up the `JumpProblem` with the [next subvolume method](/posts/post2/#nsm). 
 ```julia
@@ -67,7 +69,63 @@ Visualizing solutions of spatial jump problems is best done with animations.
 </figure>
 ~~~
 
-This animation was produced by the following script.
+This animation was produced by [this script](\reflink{Animation script}).
+
+## Making changes to the model
+Now suppose we want to make some changes to the reversible binding model above. There are two "dimensions" that can be changed: the topology of the system and the structure of hopping rates. The supported topologies are `CartesianGrid` -- used above, and any `AbstractGraph` from `LightGraphs`. The suppored forms of hopping rates are $D_{s,i}, D_{s,i,j}, D_s * L_{i,j}$, and $D_{s,i} * L_{i,j}$, where $s$ denotes the species, $i$ -- the source site, and $j$ -- the destination. 
+
+### Topology
+If our mesh is a grid (1D, 2D and 3D are supported), we can create the mesh as follows.
+```julia
+dims = (2,3,4) # can pass in a 1-Tuple, a 2-Tuple or a 3-Tuple
+grid = CartesianGrid(dims)
+```
+The interface is the same as for [`LightGraphs.grid`](https://juliagraphs.org/LightGraphs.jl/latest/generators/#LightGraphs.SimpleGraphs.grid-Union{Tuple{AbstractVector{T}},%20Tuple{T}}%20where%20T%3C:Integer). If we want to use an unstructured mesh, we can simply use any `AbstractGraph` from `LightGraphs` as follows:
+```julia
+using LightGraphs
+graph = cycle_digraph(5) # directed cyclic graph on 5 nodes
+```
+Now either `graph` or `grid` can be used as `spatial_system` in creation of the `JumpProblem`.
+
+### Hopping rates
+The most general form of hopping rates that is supported is $D_{s,i,j}$ -- each (species, source, destination) triple gets its own independent hopping rate. To use this, `hopping_constants` must be of type `Matrix{Vector{F}} where F <: Number` (usually `F` is `Float64`) with `hopping_constants[s,i][j]` being the hopping rate of species $s$ at site $i$ to neighbor at index $j$. Note that neighbors are in ascending order, like in `LightGraphs`. Here is an example where only hopping up and left is allowed.
+```julia
+hopping_constants = Matrix{Vector{Float64}}(undef, num_species, num_nodes)
+for ci in CartesianIndices(hopping_constants)
+    (species, site) = Tuple(ci)
+    hopping_constants[species, site] = zeros(outdegree(grid, site))
+    for (n, nb) in enumerate(neighbors(grid, site))
+        if nb < site
+            hopping_constants[species, site][n] = 1.0
+        end
+    end
+end
+```
+
+To pass in `hopping_constants` of form $D_s * L_{i,j}$ we need two vectors -- one for $D_s$ and one for $L_{i,j}$. Here is an example 
+```julia
+species_hop_constants = ones(num_species)
+site_hop_constants = Vector{Vector{Float64}}(undef, num_nodes)
+for site in 1:num_nodes
+    site_hop_constants[site] = ones(outdegree(grids[1], site))
+end
+hopping_constants=Pair(species_hop_constants, site_hop_constants)
+```
+We must combine both vectors into a pair as in the last line above.
+
+Finally, to use in `hopping_constants` of form $D_{s,i} * L_{i,j}$ we construct a matrix instead of a vector for $D_{s,j}$. 
+```julia
+species_hop_constants = ones(num_species, num_nodes)
+site_hop_constants = Vector{Vector{Float64}}(undef, num_nodes)
+for site in 1:num_nodes
+    site_hop_constants[site] = ones(outdegree(grids[1], site))
+end
+hopping_constants=Pair(species_hop_constants, site_hop_constants)
+```
+
+We can use either of the four versions of `hopping_constants` to construct a `JumpProblem` with the same syntax as in the original example. The different forms of hopping rates are supported not only for convenience but also for better memory usage and performance. So it is recommended that the most specialized form of hopping rates is used.
+
+## Animation script
 ```julia
 using Plots
 is_static(spec) = (spec == 3) # true if spec does not hop
