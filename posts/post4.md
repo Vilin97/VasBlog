@@ -4,7 +4,10 @@ published = "2021-08-02"
 +++
 
 # Tutorial on using spatial SSAs in DiffEqJump
-This blog will show how to use the functionality I added to `DiffEqJump` over the summer. See [the documentation](https://diffeq.sciml.ai/latest/types/jump_types/) for a tutorial on getting started with `DiffEqJump`.
+This blog will show how to use the functionality I added to [`DiffEqJump`](https://github.com/SciML/DiffEqJump.jl) over the summer. See [the documentation](https://diffeq.sciml.ai/latest/types/jump_types/) for a tutorial on getting started with `DiffEqJump`.
+
+## Installing `DiffEqJump`
+To use `DiffEqJump` you will need to have [julia](https://julialang.org/downloads/) installed. Once in REPL, do `] add DiffEqJump`. After the installation finishes, you will be able to use all the functionality described below.
 
 ## Reversible binding model on a grid
 A 5 by 5 Cartesian grid:
