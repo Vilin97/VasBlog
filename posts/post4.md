@@ -3,13 +3,14 @@ title = "Tutorial on using spatial SSAs in DiffEqJump"
 published = "2021-08-02"
 +++
 
-# Tutorial on using spatial SSAs in DiffEqJump
 This blog will show how to use the functionality I added to [`DiffEqJump`](https://github.com/SciML/DiffEqJump.jl) over the summer. See [the documentation](https://diffeq.sciml.ai/latest/types/jump_types/) for a tutorial on getting started with `DiffEqJump`.
 
 ## Installing `DiffEqJump`
+
 To use `DiffEqJump` you will need to have [julia](https://julialang.org/downloads/) installed. Once in REPL, do `] add DiffEqJump`. After the installation finishes, you will be able to use all the functionality described below.
 
 ## Reversible binding model on a grid
+
 A 5 by 5 Cartesian grid:
 
 | <!-- -->  | <!-- -->  | <!-- -->  |  <!-- --> | <!-- -->  |
@@ -23,49 +24,66 @@ A 5 by 5 Cartesian grid:
 Suppose we have a reversible binding system described by $A+B \xleftrightarrow[k_2]{k_1} C$, where $k_1$ is the forward rate and $k_2$ is the backward rate. Further suppose that all $A$ molecules start in the lower left corner, while all $B$ molecules start in the upper right corner of a 5 by 5 grid. There are no $C$ molecules at the start.
 
 We first create the grid:
+
 ```julia
 using DiffEqJump
 dims = (5,5)
 num_nodes = prod(dims) # number of sites
 grid = CartesianGrid(dims) # or use LightGraphs.grid(dims)
 ```
+
 Now we set the initial state of the simulation. It has to be a matrix with entry $(s,i)$ being the number of species $s$ at site $i$ (with the standard column-major ordering of the grid).
+
 ```julia
 num_species = 3
 starting_state = zeros(Int, num_species, num_nodes)
 starting_state[1,1] = 25
 starting_state[1,2] = 25
 ```
+
 We now set the time-span of the simulation and the reaction rates. These can be chosen arbitrarily.
+
 ```julia
 tspan = (0.0, 2.0)
 rates = [3.0, 0.05] # k_1 = rates[1], k_2 = rates[2]
 ```
+
 Now we can create the `DiscreteProblem`:
+
 ```julia
 prob = DiscreteProblem(starting_state, tspan, rates)
 ```
+
 Since both reactions are [massaction reactions](https://en.wikipedia.org/wiki/Law_of_mass_action), we put them together in a `MassActionJump`. In order to do that we create two stoichiometry vectors. The net stoiciometry vector describes which molecules change in number and how much after each reaction; for example, `[1 => -1]` is the first molecule disappearing. The reaction stoiciometry vector describes what the reactants of each reaction are; for example, `[1 => 1, 2 => 1]` would mean that the reactants are one molecule of type 1 and one molecule of type 2.
+
 ```julia
 netstoch = [[1 => -1, 2 => -1, 3 => 1],[1 => 1, 2 => 1, 3 => -1]]
 reactstoch = [[1 => 1, 2 => 1],[3 => 1]]
 majumps = MassActionJump(rates, reactstoch, netstoch)
 ```
+
 The last thing to set up is the hopping constants -- the probability per time of an andividual molecule of each species hopping from one site to another site. In practice this parameter, as well as reaction rates, are obtained empirically. Suppose that molecule $C$ cannot diffuse, while molecules $A$ and $B$ diffuse at probability per time 1 (i.e. the time of the diffusive hop is exponentially distributed with mean 1).
-```julia 
+
+```julia
 hopping_constants = ones(num_species, num_nodes)
 hopping_constants[3, :] .= 0.0
 ```
-We are now ready to set up the `JumpProblem` with the [next subvolume method](/posts/post2/#nsm). 
+
+We are now ready to set up the `JumpProblem` with the [next subvolume method](/posts/post2/#nsm).
+
 ```julia
 alg = NSM() # Next Subvolume Method. Can also use DirectCRonDirect
 jump_prob = JumpProblem(prob, alg, majumps, hopping_constants=hopping_constants, spatial_system = grid, save_positions=(true, false)) 
 ```
+
 The `save_positions` keyword tells the solver to save the positions just before the jumps. To solve the jump problem do
+
 ```julia
 solution = solve(jump_prob, SSAStepper())
 ```
-Visualizing solutions of spatial jump problems is best done with animations. 
+
+Visualizing solutions of spatial jump problems is best done with animations.
+
 ~~~
 <figure>
   <img src="/assets/ABC_anim_275frames_5fps.gif" width="100%" />
@@ -75,23 +93,31 @@ Visualizing solutions of spatial jump problems is best done with animations.
 This animation was produced by [this script](\reflink{Animation script}).
 
 ## Making changes to the model
-Now suppose we want to make some changes to the reversible binding model above. There are two "dimensions" that can be changed: the topology of the system and the structure of hopping rates. The supported topologies are `CartesianGrid` -- used above, and any `AbstractGraph` from `LightGraphs`. The suppored forms of hopping rates are $D_{s,i}, D_{s,i,j}, D_s * L_{i,j}$, and $D_{s,i} * L_{i,j}$, where $s$ denotes the species, $i$ -- the source site, and $j$ -- the destination. 
+
+Now suppose we want to make some changes to the reversible binding model above. There are three "dimensions" that can be changed: the topology of the system, the structure of hopping rates and the solver. The supported topologies are `CartesianGrid` -- used above, and any `AbstractGraph` from `LightGraphs`. The supported forms of hopping rates are $D_{s,i}, D_{s,i,j}, D_s * L_{i,j}$, and $D_{s,i} * L_{i,j}$, where $s$ denotes the species, $i$ -- the source site, and $j$ -- the destination. The supported solvers are `NSM`, `DirectCRDirect` and any of the standard non-spatial solvers.
 
 ### Topology
+
 If our mesh is a grid (1D, 2D and 3D are supported), we can create the mesh as follows.
+
 ```julia
 dims = (2,3,4) # can pass in a 1-Tuple, a 2-Tuple or a 3-Tuple
 grid = CartesianGrid(dims)
 ```
+
 The interface is the same as for [`LightGraphs.grid`](https://juliagraphs.org/LightGraphs.jl/latest/generators/#LightGraphs.SimpleGraphs.grid-Union{Tuple{AbstractVector{T}},%20Tuple{T}}%20where%20T%3C:Integer). If we want to use an unstructured mesh, we can simply use any `AbstractGraph` from `LightGraphs` as follows:
+
 ```julia
 using LightGraphs
 graph = cycle_digraph(5) # directed cyclic graph on 5 nodes
 ```
+
 Now either `graph` or `grid` can be used as `spatial_system` in creation of the `JumpProblem`.
 
 ### Hopping rates
+
 The most general form of hopping rates that is supported is $D_{s,i,j}$ -- each (species, source, destination) triple gets its own independent hopping rate. To use this, `hopping_constants` must be of type `Matrix{Vector{F}} where F <: Number` (usually `F` is `Float64`) with `hopping_constants[s,i][j]` being the hopping rate of species $s$ at site $i$ to neighbor at index $j$. Note that neighbors are in ascending order, like in `LightGraphs`. Here is an example where only hopping up and left is allowed.
+
 ```julia
 hopping_constants = Matrix{Vector{Float64}}(undef, num_species, num_nodes)
 for ci in CartesianIndices(hopping_constants)
@@ -105,7 +131,8 @@ for ci in CartesianIndices(hopping_constants)
 end
 ```
 
-To pass in `hopping_constants` of form $D_s * L_{i,j}$ we need two vectors -- one for $D_s$ and one for $L_{i,j}$. Here is an example 
+To pass in `hopping_constants` of form $D_s * L_{i,j}$ we need two vectors -- one for $D_s$ and one for $L_{i,j}$. Here is an example.
+
 ```julia
 species_hop_constants = ones(num_species)
 site_hop_constants = Vector{Vector{Float64}}(undef, num_nodes)
@@ -114,9 +141,11 @@ for site in 1:num_nodes
 end
 hopping_constants=Pair(species_hop_constants, site_hop_constants)
 ```
+
 We must combine both vectors into a pair as in the last line above.
 
-Finally, to use in `hopping_constants` of form $D_{s,i} * L_{i,j}$ we construct a matrix instead of a vector for $D_{s,j}$. 
+Finally, to use in `hopping_constants` of form $D_{s,i} * L_{i,j}$ we construct a matrix instead of a vector for $D_{s,j}$.
+
 ```julia
 species_hop_constants = ones(num_species, num_nodes)
 site_hop_constants = Vector{Vector{Float64}}(undef, num_nodes)
@@ -128,7 +157,14 @@ hopping_constants=Pair(species_hop_constants, site_hop_constants)
 
 We can use either of the four versions of `hopping_constants` to construct a `JumpProblem` with the same syntax as in the original example. The different forms of hopping rates are supported not only for convenience but also for better memory usage and performance. So it is recommended that the most specialized form of hopping rates is used.
 
+### Solvers
+
+There are currently two specialized "spatial" solvers: `NSM` and `DirectCRDirect`. The former stands for Next Subvolume Method and was previously described [here](/posts/post2/#nsm). The latter employs Composition-Rejection to sample the next site to fire, similar to the ordinary DirectCR method. For larger networks `DirectCRDirect` is expected to be faster. Both methods can be used interchangeably.
+
+Additionally, all standard solvers are supported as well, although they are expected to use more memory and be slower. They "flatten" the problem, i.e. turn all hops into reactions, resulting in a much larger system. For example, to use the Next Reaction Method (`NRM`), simply pass in `NRM()` instead of `NSM()` in the construction of the `JumpProblem`. Importantly, you *must* pass in `hopping_constants` in the `D_{s,i,j}` or `D_{s,i}` form to use any of the non-specialized solvers.
+
 ## Animation script
+
 ```julia
 using Plots
 is_static(spec) = (spec == 3) # true if spec does not hop
