@@ -38,7 +38,8 @@ Now we set the initial state of the simulation. It has to be a matrix with entry
 num_species = 3
 starting_state = zeros(Int, num_species, num_nodes)
 starting_state[1,1] = 25
-starting_state[1,2] = 25
+starting_state[2,end] = 25
+starting_state
 ```
 
 We now set the time-span of the simulation and the reaction rates. These can be chosen arbitrarily.
@@ -54,7 +55,7 @@ Now we can create the `DiscreteProblem`:
 prob = DiscreteProblem(starting_state, tspan, rates)
 ```
 
-Since both reactions are [massaction reactions](https://en.wikipedia.org/wiki/Law_of_mass_action), we put them together in a `MassActionJump`. In order to do that we create two stoichiometry vectors. The net stoiciometry vector describes which molecules change in number and how much after each reaction; for example, `[1 => -1]` is the first molecule disappearing. The reaction stoiciometry vector describes what the reactants of each reaction are; for example, `[1 => 1, 2 => 1]` would mean that the reactants are one molecule of type 1 and one molecule of type 2.
+Since both reactions are [massaction reactions](https://en.wikipedia.org/wiki/Law_of_mass_action), we put them together in a `MassActionJump`. In order to do that we create two stoichiometry vectors. The net stoichiometry vector describes which molecules change in number and how much after each reaction; for example, `[1 => -1]` is the first molecule disappearing. The reaction stoichiometry vector describes what the reactants of each reaction are; for example, `[1 => 1, 2 => 1]` would mean that the reactants are one molecule of type 1 and one molecule of type 2.
 
 ```julia
 netstoch = [[1 => -1, 2 => -1, 3 => 1],[1 => 1, 2 => 1, 3 => -1]]
@@ -62,7 +63,7 @@ reactstoch = [[1 => 1, 2 => 1],[3 => 1]]
 majumps = MassActionJump(rates, reactstoch, netstoch)
 ```
 
-The last thing to set up is the hopping constants -- the probability per time of an andividual molecule of each species hopping from one site to another site. In practice this parameter, as well as reaction rates, are obtained empirically. Suppose that molecule $C$ cannot diffuse, while molecules $A$ and $B$ diffuse at probability per time 1 (i.e. the time of the diffusive hop is exponentially distributed with mean 1).
+The last thing to set up is the hopping constants -- the probability per time of an individual molecule of each species hopping from one site to another site. In practice this parameter, as well as reaction rates, are obtained empirically. Suppose that molecule $C$ cannot diffuse, while molecules $A$ and $B$ diffuse at probability per time 1 (i.e. the time of the diffusive hop is exponentially distributed with mean 1). Entry $(s,i)$ of `hopping_constants` is the hopping rate of species $s$ at site $i$ to any of its neighboring sites (diagonal hops are not allowed).
 
 ```julia
 hopping_constants = ones(num_species, num_nodes)
@@ -137,7 +138,7 @@ To pass in `hopping_constants` of form $D_s * L_{i,j}$ we need two vectors -- on
 species_hop_constants = ones(num_species)
 site_hop_constants = Vector{Vector{Float64}}(undef, num_nodes)
 for site in 1:num_nodes
-    site_hop_constants[site] = ones(outdegree(grids[1], site))
+    site_hop_constants[site] = ones(outdegree(grid, site))
 end
 hopping_constants=Pair(species_hop_constants, site_hop_constants)
 ```
@@ -150,7 +151,7 @@ Finally, to use in `hopping_constants` of form $D_{s,i} * L_{i,j}$ we construct 
 species_hop_constants = ones(num_species, num_nodes)
 site_hop_constants = Vector{Vector{Float64}}(undef, num_nodes)
 for site in 1:num_nodes
-    site_hop_constants[site] = ones(outdegree(grids[1], site))
+    site_hop_constants[site] = ones(outdegree(grid, site))
 end
 hopping_constants=Pair(species_hop_constants, site_hop_constants)
 ```
