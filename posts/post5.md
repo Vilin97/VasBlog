@@ -15,7 +15,9 @@ Apart from the interface that is exposed to the user, an internal interface for 
 
 ## Spatial Solvers
 
-Two specialized spatial solvers were added to `DiffEqJump` -- `NSM` and `DirectCRDirect`. Additionally, a flattening method was added as fallback. See [post 4](\reflink{Solvers}) for a description of the two solvers and flattening. Both specialized solvers perform better than the two best existing non-spatial solvers -- `RSSACR` and `DirectCR`.
+Two specialized spatial solvers were added to `DiffEqJump` -- `NSM` and `DirectCRDirect`. Additionally, a flattening method was added as fallback. See [post 4](\reflink{Solvers}) for a description of the two solvers and flattening. In short, `NSM` uses a binary heap to choose the next site to fire, resulting in $O(\log n)$ asymptotic runtime -- the time to update the heap; `DirectCRDirect` uses a clever priority table resulting in $O(1)$ runtime but with higher overhead; flattening treats species at different sites as distinct and treats diffusive hops as monomolecular reactions resulting in extremely high memory usage. The asymptotic runtime of flattened algorithms depend on the exact non-spatial SSA used but are not representative of real performance due to inefficient memory use.
+
+Both specialized solvers perform better than the two best existing non-spatial solvers -- `RSSACR` and `DirectCR` as can be seen in the figure below.
 
 ~~~
 <figure>
@@ -26,7 +28,13 @@ Two specialized spatial solvers were added to `DiffEqJump` -- `NSM` and `DirectC
 
 ## Spatial structs and utilities
 
-There are now [four files](https://github.com/SciML/DiffEqJump.jl/tree/master/src/spatial) with utility functions and `struct`s for spatial solvers -- `utils.jl`, `topology.jl`, `hop_rates.jl` and `reaction_rates.jl`. The first one contains functions for doing various routines common to all or many spatial SSAs. For example [`update_state!`](https://github.com/SciML/DiffEqJump.jl/blob/master/src/spatial/utils.jl#L59) updates the current state. The second file contains several `struct`s to keep track of the topology of the system. Most notably, `CartesianGrid` represents a Cartesian Grid -- an interval, a rectangle, or a 3D equivalent of a rectangle (sometimes called hyperrectangle). See [post 3](/posts/post3) for a description of `CartesianGrid`. The last two files implement two analogous `struct`s -- `RxRates` to keep track of reactions and `HopRates` to keep track of spatial hops.
+There are now [four files](https://github.com/SciML/DiffEqJump.jl/tree/master/src/spatial) with utility functions and `struct`s for spatial solvers -- `utils.jl`, `topology.jl`, `hop_rates.jl` and `reaction_rates.jl`. 
+
+The first one contains functions for doing various routines common to all or many spatial SSAs. For example [`update_state!`](https://github.com/SciML/DiffEqJump.jl/blob/master/src/spatial/utils.jl#L59) updates the current state. 
+
+The second file contains several `struct`s to keep track of the topology of the system. Most notably, `CartesianGrid` represents a Cartesian Grid -- an interval, a rectangle, or a 3D equivalent of a rectangle (sometimes called hyperrectangle). See [post 3](/posts/post3) for a description of `CartesianGrid`. Additionally, any graph from `LightGraphs` can be passed in, allowing for simulations on unstructured meshes. This can be useful in epidemics simulations (representing a geographical region as a graph) and simulations on meshes obtained from triangulating a surface.
+
+The last two files implement two analogous `struct`s -- `RxRates` to keep track of reactions and `HopRates` to keep track of spatial hops. The latter of the two is specifically optimized for `CartesianGrid`.
 
 ## Tests, tutorials, benchmarks, documentation
 
