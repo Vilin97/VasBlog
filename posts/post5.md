@@ -19,7 +19,7 @@ Two specialized spatial solvers were added to `DiffEqJump` -- `NSM` and `DirectC
 
 ~~~
 <figure>
-  <img src="/assets/SSAs_comparison_plot.png" width="100%" />
+  <img src="/assets/SSAs_comparison_plot.png" width="120%" />
   <figcaption> Comparison of spatial SSAs on a big model </figcaption>
 </figure>
 ~~~

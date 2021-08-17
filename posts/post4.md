@@ -3,6 +3,8 @@ title = "Tutorial on using spatial SSAs in DiffEqJump"
 published = "2021-08-02"
 +++
 
+# Tutorial on using spatial SSAs in DiffEqJump
+
 This blog will show how to use the functionality I added to [`DiffEqJump`](https://github.com/SciML/DiffEqJump.jl) over the summer. See [the documentation](https://diffeq.sciml.ai/latest/types/jump_types/) for a tutorial on getting started with `DiffEqJump`.
 
 ## Installing `DiffEqJump`
