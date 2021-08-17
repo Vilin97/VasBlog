@@ -70,7 +70,7 @@ hopping_constants = ones(num_species, num_nodes)
 hopping_constants[3, :] .= 0.0
 ```
 
-We are now ready to set up the `JumpProblem` with the [next subvolume method](/posts/post2/#nsm).
+We are now ready to set up the `JumpProblem` with the [next subvolume method](/posts/post2/#next_subvolume_method).
 
 ```julia
 alg = NSM() # Next Subvolume Method. Can also use DirectCRonDirect
