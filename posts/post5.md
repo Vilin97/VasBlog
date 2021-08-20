@@ -5,11 +5,11 @@ published = "2021-08-16"
 
 # GSOC 2021 Final Report
 
-This blog will summarize the work I did in summer 2021 as part of [Google Summer of Code](https://summerofcode.withgoogle.com/). See [the project proposal](https://summerofcode.withgoogle.com/projects/#5463862406545408) and [the first post](/posts/post1) for the proposed work.  
+This blog will summarize the work I did in summer 2021 as part of [Google Summer of Code](https://summerofcode.withgoogle.com/). See [the project proposal](https://summerofcode.withgoogle.com/projects/#5463862406545408) and [the first post](/posts/post1) for the proposed work. In short, I contributed spatial simulation algorithms to [`DiffEqJump`](https://github.com/SciML/DiffEqJump.jl) -- a Julia module for simulating jump processes. Below is a rather detailed description of all the work I have done this summer. Follow the embedded links for more details.
 
 ## Interface for spatial SSAs
 
-Since `DiffEqJump` did not have spatial solvers before this summer, a new interface had to be developed. It had to be consistent with the existing interface for non-spatial solvers and be flexible enough for more spatial SSAs to be added. After a lot of trial and error such an interface was settled on. In short, only two extra keyword arguments are required of the user over what is needed for an ordinary non-spatial problem. See [the previous post](/posts/post4) or [this tutorial](https://tutorials.sciml.ai/html/jumps/spatial.html) for a detailed description of the interface.
+Since `DiffEqJump` did not have spatial solvers before this summer, a new interface had to be developed. It had to be consistent with the existing interface because it feeds into the rich ecosystem of `SciML`, and be flexible enough for more spatial SSAs to be added. After a lot of trial and error such an interface was settled on. In short, only two extra keyword arguments are required of the user over what is needed for an ordinary non-spatial problem. See [the previous post](/posts/post4) or [this tutorial](https://tutorials.sciml.ai/html/jumps/spatial.html) for a detailed description of the interface.
 
 Apart from the interface that is exposed to the user, an internal interface for spatial SSAs was developed. The most notable elements of it are three `struct`s that keep track of spatial information needed by any spatial solver: `CartesianGrid`, `RxRates` and `HopRates`.
 
