@@ -70,8 +70,9 @@ Here is the complete list of my pull requests to `DiffEqJump`. All of them have 
 * [Improved `HopRates`](https://github.com/SciML/DiffEqJump.jl/pull/202) -- optimized `HopRates` for `CartesianGrid`.
 * [More `HopRates`](https://github.com/SciML/DiffEqJump.jl/pull/203) -- added two new forms of hopping rates to reduce memory use.
 * [Rename file](https://github.com/SciML/DiffEqJump.jl/pull/204) -- small PR renaming a file.
+* [New `PriorityTable`](https://github.com/SciML/DiffEqJump.jl/pull/208) -- rewrote the `PriorityTable` structure to make it faster. This PR will be merged once it passes review.
 
 I made two pull requests to other `SciML` repositories -- `SciMLTutorials` and `SciMLBenchmarks`.
 
 * [Tutorial for the spatial reversible binding jump model](https://github.com/SciML/SciMLTutorials.jl/pull/430) -- a tutorial showing how to use the newly added functionality in `DiffEqJump`. This was merged.
-* [Benchmarking](https://github.com/SciML/SciMLBenchmarks.jl/pull/298) -- a benchmarking script comparing the spatial SSAs.
+* [Benchmarking](https://github.com/SciML/SciMLBenchmarks.jl/pull/298) -- a benchmarking script comparing the spatial SSAs. It will be merged once it passes review.
