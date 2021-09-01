@@ -5,7 +5,23 @@ published = "2021-08-16"
 
 # GSOC 2021 Final Report
 
-This blog will summarize the work I did in summer 2021 as part of [Google Summer of Code](https://summerofcode.withgoogle.com/). See [the project proposal](https://summerofcode.withgoogle.com/projects/#5463862406545408) and [the first post](/posts/post1) for the proposed work. In short, I contributed spatial simulation algorithms to [`DiffEqJump`](https://github.com/SciML/DiffEqJump.jl) -- a Julia module for simulating jump processes. Below is a rather detailed description of all the work I have done this summer. Follow the embedded links for more details.
+This blog describes the work I did in summer 2021 as part of [Google Summer of Code](https://summerofcode.withgoogle.com/). See [the project proposal](https://summerofcode.withgoogle.com/projects/#5463862406545408) and [the first post](/posts/post1) for the proposed work. In short, I contributed spatial simulation algorithms to [`DiffEqJump`](https://github.com/SciML/DiffEqJump.jl) -- a Julia module for simulating jump processes. Below is a rather detailed description of all the work I have done this summer. Follow the embedded links for more details.
+
+Here is a cool-looking simulation I made in 2019 as part of my BA thesis.
+~~~
+<style>
+  figure {
+    margin: 0 0 15px 20px;
+    float: center;
+    text-align: center;
+  }
+</style>
+
+<figure>
+  <img src="/assets/dna_diffusion_movie_10fps.gif" width="90%" />
+  <figcaption> Simulation of the DNA repressor model. </figcaption>
+</figure>
+~~~
 
 ## Interface for spatial SSAs
 

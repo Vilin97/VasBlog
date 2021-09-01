@@ -80,9 +80,9 @@ header li a:hover {
 }
 
 /* wide display: enforce maximum width of header to match content */
-@media (min-width: 940px) {
+@media (min-width: 1200px) {
   header {
-    width: 705px;
+    width: 1000px;
     margin-left: auto;
     margin-right: auto;
   }

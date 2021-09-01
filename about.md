@@ -28,8 +28,16 @@ I grew up in Moscow, Russia. At 17 I moved to Boston to attend Boston University
 
 ## Professional interests
 ~~~
+<style>
+  figure {
+    margin: 0 0 15px 20px;
+    float: right;
+    text-align: center;
+  }
+</style>
+
 <figure>
-  <img src="/assets/fundamental_group.png" width="100%" />
+  <img src="/assets/fundamental_group.png" width="70%" />
   <figcaption> The free group on 3 generators embeds in the free group on 2 generators via the map induced by the covering. </figcaption>
 </figure>
 ~~~
