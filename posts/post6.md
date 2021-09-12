@@ -61,6 +61,8 @@ Putting observations *$O_1$* and *$O_3$* together we obtain
 
 *$O_4$*: If $I$ is infinite, then $\sum_{n=1}^\infty 1/w(\O_n) \leq 1$. In particular, $1/w(\O_n)$ is asymptotically smaller than $1/n$. Formally, $w(\O_n) = \omega(n)$.
 
+See [wikipedia](https://en.wikipedia.org/wiki/Big_O_notation#Family_of_Bachmann%E2%80%93Landau_notations) for the $\omega$ and $\Omega$ notation.
+
 The contrapositive of the above is $w(\O_n) = O(n) \implies |I| < \infty$. Is the converse true? For example, can we find an infinite partition $\set{\O_n}$ of $\Z_+$ with $w(\O_n) \leq n^2?$ In order to answer this question I wrote a [program](https://github.com/Vilin97/Math/blob/master/src/partition_integers.jl) that explores the "greedy" algorithm of making successive sets $\O_n$.
 
 ## Programming exploration
