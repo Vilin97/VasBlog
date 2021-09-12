@@ -22,4 +22,5 @@ website_url   = "https://vilin97.github.io/"
 Add here global latex commands to use throughout your pages.
 -->
 \newcommand{\R}{\mathbb R}
-\newcommand{\scal}[1]{\langle #1 \rangle}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
