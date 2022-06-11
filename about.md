@@ -58,4 +58,4 @@ In my free time I do rock bouldering and calisthenics. I also like reading popul
 ## Contact information
 email: [vasilin97@gmail.com](mailto:vasilin97@gmail.com)\\
 Github: [vilin97](https://github.com/Vilin97)\\
-CV: [Resume](/assets/resume.pdf)\\
+CV: [Resume](/_assets/resume.pdf)\\
