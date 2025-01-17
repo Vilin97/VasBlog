@@ -47,7 +47,7 @@ I grew up in Moscow, Russia. At 17 I moved to Boston to attend Boston University
 
 I have a wide range of interests. In undergrad I worked stochastic simulation of jump processes with applications to mathematical biology. Then I spent three years learning algebra, algebraic topology, and category theory in grad school. When I switched to applied mathematics, I got interested in using interacting particle systems to numerically solve kinetic equations such as Fokker-Planck and Landau equations. In 2024 I got interested in mathematical underpinnings of deep learning, as well as its applications to practical problems such as sampling. Additionally, I have been working with the interactive proof assistant Lean, leading undergraduent research projects and a special topic course on Lean.
 
-### Publications
+### Publications and Featured Talks
 
 2025 | Community and Mentorship Through the Experimental Lean Lab (talk at JMM) | [abstract](https://meetings.ams.org/math/jmm2025/meetingapp.cgi/Paper/44733)  
 We share lessons we've learned in building community and mentoring undergraduate research projects in Lean.
@@ -76,9 +76,10 @@ Julia library for modeling and high-performance simulation of chemical reaction 
 </figure>
 ~~~
 
-In my free time I do rock bouldering and calisthenics. I also like reading popular science books: some my favorites are "How to Hide an Empire" and "The Sixth Extinction." I use [GoodReads](https://www.goodreads.com/user/show/92514946-vasily) to keep track of books I have read and want to read.
+In my free time I do rock bouldering and calisthenics. I also like reading popular science books: some my favorites are "How to Hide an Empire" and "The Sixth Extinction."
 
 ## Contact information
+
 email: [vasilin97@gmail.com](mailto:vasilin97@gmail.com)\\
 Google Scholar: [Vasily Ilin](https://scholar.google.com/citations?user=GWN1zfkAAAAJ&hl=en)\\
 Github: [vilin97](https://github.com/Vilin97)\\
