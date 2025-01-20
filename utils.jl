@@ -30,7 +30,7 @@ function hfun_blogposts()
     filter!(endswith(".md"), list)
     function sorter(p)
         ps  = splitext(p)[1]
-        url = "/VasBlog/posts/$ps/"
+        url = "/posts/$ps/"
         surl = strip(url, '/')
         pubdate = pagevar(surl, :published)
         if isnothing(pubdate)
