@@ -18,7 +18,7 @@ Here is a cool-looking simulation I made in 2019 as part of my BA thesis.
 </style>
 
 <figure>
-  <img src="/assets/dna_diffusion_movie_10fps.gif" width="90%" />
+  <img src="/VasBlog/assets/dna_diffusion_movie_10fps.gif" width="90%" />
   <figcaption> Simulation of the DNA repressor model. </figcaption>
 </figure>
 ~~~
@@ -37,7 +37,7 @@ Both specialized solvers perform better than the two best existing non-spatial s
 
 ~~~
 <figure>
-  <img src="/assets/SSAs_comparison_plot.png" width="120%" />
+  <img src="/VasBlog/assets/SSAs_comparison_plot.png" width="120%" />
   <figcaption> Comparison of spatial SSAs on a big model </figcaption>
 </figure>
 ~~~

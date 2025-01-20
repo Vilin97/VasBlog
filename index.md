@@ -1,7 +1,7 @@
 +++
 title = "VasBlog"
 rss = "Vasily Ilin -- math PhD student."
-image = "/assets/self.jpg"
+image = "/VasBlog/assets/self.jpg"
 +++
 
 ~~~

@@ -26,7 +26,7 @@ $$
 The DNA molecule is large, and is assumed not to diffuse. The other two molecules -- mRNA and protein -- can diffuse around. The result of a simulation of this model is shown in the animation below.
 ~~~
 <figure>
-  <img src="/assets/dna_diffusion_movie_10fps.gif" width="100%" />
+  <img src="/VasBlog/assets/dna_diffusion_movie_10fps.gif" width="100%" />
   <figcaption> Simulation of the DNA repressor model. </figcaption>
 </figure>
 ~~~

@@ -74,7 +74,7 @@ In order to find out which method (pre-computing neighbors, rejection-sampling o
 
 ~~~
 <figure>
-  <img src="/assets/diffusion_bench.png" width="100%" />
+  <img src="/VasBlog/assets/diffusion_bench.png" width="100%" />
   <figcaption> Benchmarking pure diffusion on a 64x64x64 grid. </figcaption>
 </figure>
 ~~~

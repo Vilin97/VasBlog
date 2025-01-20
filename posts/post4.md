@@ -89,7 +89,7 @@ Visualizing solutions of spatial jump problems is best done with animations.
 
 ~~~
 <figure>
-  <img src="/assets/ABC_anim_275frames_5fps.gif" width="100%" />
+  <img src="/VasBlog/assets/ABC_anim_275frames_5fps.gif" width="100%" />
 </figure>
 ~~~
 

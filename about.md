@@ -40,7 +40,7 @@ I grew up in Moscow, Russia. At 17 I moved to Boston to attend Boston University
 </style>
 
 <figure>
-  <img src="/assets/sampling circle distribution.png" width="70%" />
+  <img src="/VasBlog/assets/sampling circle distribution.png" width="70%" />
   <figcaption> Sampling the circle with particles. </figcaption>
 </figure>
 ~~~
@@ -71,7 +71,7 @@ Julia library for modeling and high-performance simulation of chemical reaction 
 
 ~~~
 <figure>
-  <img src="/assets/climbing_photo.jpg" width="60%" />
+  <img src="/VasBlog/assets/climbing_photo.jpg" width="60%" />
   <figcaption> Lincoln Woods, August, 2020.</figcaption>
 </figure>
 ~~~
@@ -83,4 +83,4 @@ In my free time I do rock bouldering and calisthenics. I also like reading popul
 email: [vasilin97@gmail.com](mailto:vasilin97@gmail.com)\\
 Google Scholar: [Vasily Ilin](https://scholar.google.com/citations?user=GWN1zfkAAAAJ&hl=en)\\
 Github: [vilin97](https://github.com/Vilin97)\\
-CV: [Resume](/assets/Resume.pdf)\\
+CV: [Resume](/VasBlog/assets/Resume.pdf)\\
