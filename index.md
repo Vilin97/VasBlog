@@ -15,7 +15,7 @@ image = "/assets/self.jpg"
 </style>
 
 <figure>
-  <img class="avatar-image" src="/assets/self.jpg">
+  <img class="avatar-image" src="/VasBlog/assets/self.jpg">
 </figure>
 ~~~
 
