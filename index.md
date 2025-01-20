@@ -24,7 +24,7 @@ Welcome to VasBlog -- the blog of Vasily Ilin. I am participating in Google Summ
 Here is a cool-looking simulation I made in 2019 as part of my BA thesis.
 ~~~
 <figure>
-  <img src="/assets/dna_diffusion_movie_10fps.gif" width="100%" />
+  <img src="/VasBlog/assets/dna_diffusion_movie_10fps.gif" width="100%" />
   <figcaption> Simulation of the DNA repressor model. </figcaption>
 </figure>
 ~~~
