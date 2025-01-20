@@ -1,4 +1,4 @@
-Sitemap: https://vilin97.github.io/sitemap.xml
+Sitemap: https://vilin97.github.io/VasBlog/sitemap.xml
 
 User-agent: *
 Disallow:

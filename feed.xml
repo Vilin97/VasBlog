@@ -11,12 +11,12 @@
     <title>
       <![CDATA[  VasBlog  ]]>
     </title>
-    <link> https://vilin97.github.io/ </link>
+    <link> https://vilin97.github.io/VasBlog/ </link>
     <description>
       <![CDATA[  Blog of Vasily Ilin  ]]>
     </description>
     <atom:link
-      href="https://vilin97.github.io/feed.xml"
+      href="https://vilin97.github.io/VasBlog/feed.xml"
       rel="self"
       type="application/rss+xml" />
 
@@ -25,8 +25,8 @@
   <title>
     <![CDATA[  VasBlog  ]]>
   </title>
-  <link> https://vilin97.github.io/index.html </link>
-  <guid> https://vilin97.github.io/index.html </guid>
+  <link> https://vilin97.github.io/VasBlog/index.html </link>
+  <guid> https://vilin97.github.io/VasBlog/index.html </guid>
   <description>
     <![CDATA[  Vasily Ilin – math PhD student.  ]]>
   </description>  
@@ -44,8 +44,8 @@
   <title>
     <![CDATA[  About Me  ]]>
   </title>
-  <link> https://vilin97.github.io/about/index.html </link>
-  <guid> https://vilin97.github.io/about/index.html </guid>
+  <link> https://vilin97.github.io/VasBlog/about/index.html </link>
+  <guid> https://vilin97.github.io/VasBlog/about/index.html </guid>
   <description>
     <![CDATA[  About Vasily Ilin  ]]>
   </description>  
